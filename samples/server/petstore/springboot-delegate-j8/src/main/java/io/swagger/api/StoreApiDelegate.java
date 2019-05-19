@@ -39,7 +39,7 @@ public interface StoreApiDelegate {
     /**
      * @see StoreApi#deleteOrder
      */
-    default ResponseEntity<Void> deleteOrder(String orderId) {
+    default ResponseEntity<Void> deleteOrder( String  orderId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default StoreApi interface so no example is generated");
@@ -69,7 +69,7 @@ public interface StoreApiDelegate {
     /**
      * @see StoreApi#getOrderById
      */
-    default ResponseEntity<Order> getOrderById(Long orderId) {
+    default ResponseEntity<Order> getOrderById( Long  orderId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/xml")) {
                 try {
@@ -81,7 +81,7 @@ public interface StoreApiDelegate {
             }
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"id\" : 0,  \"petId\" : 6,  \"complete\" : false,  \"status\" : \"placed\",  \"quantity\" : 1,  \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\"}", Order.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"petId\" : 6,  \"quantity\" : 1,  \"id\" : 0,  \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"complete\" : false,  \"status\" : \"placed\"}", Order.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -96,7 +96,7 @@ public interface StoreApiDelegate {
     /**
      * @see StoreApi#placeOrder
      */
-    default ResponseEntity<Order> placeOrder(Order body) {
+    default ResponseEntity<Order> placeOrder( Order  body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/xml")) {
                 try {
@@ -108,7 +108,7 @@ public interface StoreApiDelegate {
             }
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"id\" : 0,  \"petId\" : 6,  \"complete\" : false,  \"status\" : \"placed\",  \"quantity\" : 1,  \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\"}", Order.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"petId\" : 6,  \"quantity\" : 1,  \"id\" : 0,  \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"complete\" : false,  \"status\" : \"placed\"}", Order.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
